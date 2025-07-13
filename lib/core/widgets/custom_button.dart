@@ -2,11 +2,7 @@ import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/styles.dart'
 import 'package:flutter/widgets.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({
-    super.key,
-    this.onTap,
-    required this.text,
-  });
+  const CustomButton({super.key, this.onTap, required this.text});
 
   final void Function()? onTap;
 
@@ -25,11 +21,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Center(
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: Styles.style22,
-          ),
+          child: Text(text, textAlign: TextAlign.center, style: Styles.style22),
         ),
       ),
     );
