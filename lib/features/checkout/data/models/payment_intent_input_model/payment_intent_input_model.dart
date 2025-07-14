@@ -1,10 +1,12 @@
 class PaymentIntentInputModel {
-  final String amount;
+  final double amount;
   final String currency;
 
   PaymentIntentInputModel({required this.amount, required this.currency});
 
   Map<String, dynamic> toJson() {
-    return {'amount': amount, 'currency': currency};
+    return {'amount': convertToMinorUnits(amount), 'currency': currency};
   }
 }
+
+int convertToMinorUnits(double amount) => (amount * 100).round();

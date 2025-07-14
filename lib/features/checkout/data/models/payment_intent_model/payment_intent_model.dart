@@ -32,7 +32,7 @@ class PaymentIntentModel extends Equatable {
   final dynamic onBehalfOf;
   final dynamic paymentMethod;
   final PaymentMethodOptions? paymentMethodOptions;
-  final List<String>? paymentMethodTypes;
+  final List<dynamic>? paymentMethodTypes;
   final dynamic processing;
   final dynamic receiptEmail;
   final dynamic review;
@@ -92,19 +92,9 @@ class PaymentIntentModel extends Equatable {
       object: json['object'] as String?,
       amount: json['amount'] as int?,
       amountCapturable: json['amount_capturable'] as int?,
-      amountDetails: json['amount_details'] == null
-          ? null
-          : AmountDetails.fromJson(
-              json['amount_details'] as Map<String, dynamic>,
-            ),
       amountReceived: json['amount_received'] as int?,
       application: json['application'] as dynamic,
       applicationFeeAmount: json['application_fee_amount'] as dynamic,
-      automaticPaymentMethods: json['automatic_payment_methods'] == null
-          ? null
-          : AutomaticPaymentMethods.fromJson(
-              json['automatic_payment_methods'] as Map<String, dynamic>,
-            ),
       canceledAt: json['canceled_at'] as dynamic,
       cancellationReason: json['cancellation_reason'] as dynamic,
       captureMethod: json['capture_method'] as String?,
@@ -117,18 +107,10 @@ class PaymentIntentModel extends Equatable {
       lastPaymentError: json['last_payment_error'] as dynamic,
       latestCharge: json['latest_charge'] as dynamic,
       livemode: json['livemode'] as bool?,
-      metadata: json['metadata'] == null
-          ? null
-          : Metadata.fromJson(json['metadata'] as Map<String, dynamic>),
       nextAction: json['next_action'] as dynamic,
       onBehalfOf: json['on_behalf_of'] as dynamic,
       paymentMethod: json['payment_method'] as dynamic,
-      paymentMethodOptions: json['payment_method_options'] == null
-          ? null
-          : PaymentMethodOptions.fromJson(
-              json['payment_method_options'] as Map<String, dynamic>,
-            ),
-      paymentMethodTypes: json['payment_method_types'] as List<String>?,
+      paymentMethodTypes: json['payment_method_types'] as List<dynamic>?,
       processing: json['processing'] as dynamic,
       receiptEmail: json['receipt_email'] as dynamic,
       review: json['review'] as dynamic,
@@ -142,47 +124,6 @@ class PaymentIntentModel extends Equatable {
       transferGroup: json['transfer_group'] as dynamic,
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'object': object,
-    'amount': amount,
-    'amount_capturable': amountCapturable,
-    'amount_details': amountDetails?.toJson(),
-    'amount_received': amountReceived,
-    'application': application,
-    'application_fee_amount': applicationFeeAmount,
-    'automatic_payment_methods': automaticPaymentMethods?.toJson(),
-    'canceled_at': canceledAt,
-    'cancellation_reason': cancellationReason,
-    'capture_method': captureMethod,
-    'client_secret': clientSecret,
-    'confirmation_method': confirmationMethod,
-    'created': created,
-    'currency': currency,
-    'customer': customer,
-    'description': description,
-    'last_payment_error': lastPaymentError,
-    'latest_charge': latestCharge,
-    'livemode': livemode,
-    'metadata': metadata?.toJson(),
-    'next_action': nextAction,
-    'on_behalf_of': onBehalfOf,
-    'payment_method': paymentMethod,
-    'payment_method_options': paymentMethodOptions?.toJson(),
-    'payment_method_types': paymentMethodTypes,
-    'processing': processing,
-    'receipt_email': receiptEmail,
-    'review': review,
-    'setup_future_usage': setupFutureUsage,
-    'shipping': shipping,
-    'source': source,
-    'statement_descriptor': statementDescriptor,
-    'statement_descriptor_suffix': statementDescriptorSuffix,
-    'status': status,
-    'transfer_data': transferData,
-    'transfer_group': transferGroup,
-  };
 
   @override
   List<Object?> get props {

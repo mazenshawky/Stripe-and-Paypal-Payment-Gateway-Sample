@@ -13,8 +13,6 @@ class AmountDetails extends Equatable {
         : Tip.fromJson(json['tip'] as Map<String, dynamic>),
   );
 
-  Map<String, dynamic> toJson() => {'tip': tip?.toJson()};
-
   @override
   List<Object?> get props => [tip];
 }
