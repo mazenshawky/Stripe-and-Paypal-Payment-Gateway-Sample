@@ -8,12 +8,17 @@ class ApiService {
     required String url,
     required String token,
     String? contentType,
+    Map<String, dynamic>? additionalHeaders,
   }) async {
+    Map<String, dynamic> headers = {'Authorization': 'Bearer $token'};
+    if (additionalHeaders != null) {
+      headers.addAll(additionalHeaders);
+    }
     final response = await dio.post(
       url,
       data: body,
       options: Options(
-        headers: {'Authorization': 'Bearer $token'},
+        headers: headers,
         contentType: contentType ?? Headers.formUrlEncodedContentType,
       ),
     );

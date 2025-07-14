@@ -5,7 +5,7 @@ import 'automatic_payment_methods.dart';
 import 'metadata.dart';
 import 'payment_method_options.dart';
 
-class PaymentIntentModel extends Equatable {
+class PaymentIntentResponse extends Equatable {
   final String? id;
   final String? object;
   final int? amount;
@@ -45,7 +45,7 @@ class PaymentIntentModel extends Equatable {
   final dynamic transferData;
   final dynamic transferGroup;
 
-  const PaymentIntentModel({
+  const PaymentIntentResponse({
     this.id,
     this.object,
     this.amount,
@@ -86,8 +86,8 @@ class PaymentIntentModel extends Equatable {
     this.transferGroup,
   });
 
-  factory PaymentIntentModel.fromJson(Map<String, dynamic> json) {
-    return PaymentIntentModel(
+  factory PaymentIntentResponse.fromJson(Map<String, dynamic> json) {
+    return PaymentIntentResponse(
       id: json['id'] as String?,
       object: json['object'] as String?,
       amount: json['amount'] as int?,

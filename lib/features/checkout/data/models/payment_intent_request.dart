@@ -1,9 +1,9 @@
-class PaymentIntentInputModel {
+class PaymentIntentRequest {
   final double amount;
   final String currency;
   final String customerId;
 
-  PaymentIntentInputModel({
+  PaymentIntentRequest({
     required this.amount,
     required this.currency,
     required this.customerId,
