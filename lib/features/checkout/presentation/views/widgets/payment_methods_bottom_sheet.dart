@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/user.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/payment_intent_input_model/payment_intent_input_model.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/cubit/payment_cubit.dart';
@@ -39,8 +40,13 @@ class PaymentMethodsBottomSheet extends StatelessWidget {
             builder: (context, state) {
               return CustomButton(
                 onTap: () {
-                  PaymentIntentInputModel paymentIntentInputModel =
-                      PaymentIntentInputModel(amount: 67.54, currency: 'USD');
+                  PaymentIntentInputModel
+                  paymentIntentInputModel = PaymentIntentInputModel(
+                    amount: 67.54,
+                    currency: 'USD',
+                    
+                    customerId: User.stripeCustomerId,
+                  );
                   BlocProvider.of<PaymentCubit>(context).makePayment(
                     paymentIntentInputModel: paymentIntentInputModel,
                   );
