@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/enums/payment_method.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/core/functions/get_transactions.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/api_keys.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/user.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/amount_model/amount_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/amount_model/details.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/item_list_model/order_item_model.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/item_list_model/item_list_model.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/payment_intent_request.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/cubit/payment_cubit.dart';
@@ -126,27 +125,16 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
           onError: (error) {
             debugPrint("onError: $error");
             Navigator.pop(context);
+            Navigator.pop(context);
+            SnackBar snackBar = SnackBar(content: Text(error.toString()));
+            ScaffoldMessenger.of(context).showSnackBar(snackBar);
           },
           onCancel: () {
             debugPrint('cancelled:');
+            Navigator.pop(context);
           },
         ),
       ),
     );
-  }
-
-  ({AmountModel amount, ItemListModel itemList}) getTransactionsData() {
-    final AmountModel amount = AmountModel(
-      total: '100',
-      currency: 'USD',
-      details: Details(shipping: '0', shippingDiscount: 0, subtotal: '100'),
-    );
-    final List<OrderItemModel> orders = [
-      OrderItemModel(currency: 'USD', name: 'Apple', price: '4', quantity: 10),
-      OrderItemModel(currency: 'USD', name: 'Apple', price: '5', quantity: 12),
-    ];
-    final ItemListModel itemList = ItemListModel(orders: orders);
-
-    return (amount: amount, itemList: itemList);
   }
 }
