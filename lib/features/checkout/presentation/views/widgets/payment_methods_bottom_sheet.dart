@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/enums/payment_method.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/functions/get_transactions.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/api_keys.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/user.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/amount_model/amount_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/item_list_model/item_list_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/stripe/stripe_payment_intent_request.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_intent_request.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/paymob_view.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/thank_you_view.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
+import 'package:payment_integration_sample/core/enums/payment_method.dart';
+import 'package:payment_integration_sample/core/functions/get_transactions.dart';
+import 'package:payment_integration_sample/core/utils/api_keys.dart';
+import 'package:payment_integration_sample/core/utils/user.dart';
+import 'package:payment_integration_sample/core/widgets/custom_button.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/amount_model/amount_model.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/item_list_model/item_list_model.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/stripe/stripe_payment_intent_request.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paymob/paymob_payment_intent_request.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/views/paymob_view.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/views/thank_you_view.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
 
 class PaymentMethodsBottomSheet extends StatefulWidget {
   const PaymentMethodsBottomSheet({super.key});

@@ -1,4 +1,4 @@
-package com.example.stripe_and_paypal_payment_gateway_sample
+package com.example.payment_integration_sample
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 

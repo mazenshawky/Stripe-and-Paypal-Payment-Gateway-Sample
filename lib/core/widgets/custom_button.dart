@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/styles.dart';
+import 'package:payment_integration_sample/core/utils/styles.dart';
 
 class CustomButton extends StatelessWidget {
   const CustomButton({

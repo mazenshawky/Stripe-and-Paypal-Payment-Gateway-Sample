@@ -1,7 +1,7 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/amount_model/amount_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/amount_model/details.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/item_list_model/item_list_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/item_list_model/order_item_model.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/amount_model/amount_model.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/amount_model/details.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/item_list_model/item_list_model.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paypal/item_list_model/order_item_model.dart';
 
 ({AmountModel amount, ItemListModel itemList}) getTransactionsData() {
   final AmountModel amount = AmountModel(

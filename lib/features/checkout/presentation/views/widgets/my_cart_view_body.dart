@@ -1,13 +1,13 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/total_price_widget.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/total_price_widget.dart';
+import 'package:payment_integration_sample/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/repos/checkout_repo.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/repos/checkout_repo_impl.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/cart_info_item.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/payment_methods_bottom_sheet.dart';
+import 'package:payment_integration_sample/features/checkout/data/repos/checkout_repo.dart';
+import 'package:payment_integration_sample/features/checkout/data/repos/checkout_repo_impl.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/views/widgets/cart_info_item.dart';
+import 'package:payment_integration_sample/features/checkout/presentation/views/widgets/payment_methods_bottom_sheet.dart';
 
 class MyCartViewBody extends StatelessWidget {
   const MyCartViewBody({super.key});

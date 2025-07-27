@@ -1,4 +1,4 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/styles.dart';
+import 'package:payment_integration_sample/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 

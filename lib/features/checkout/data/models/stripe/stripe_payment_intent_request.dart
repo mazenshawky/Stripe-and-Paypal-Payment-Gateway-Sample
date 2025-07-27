@@ -1,4 +1,4 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/helpers.dart';
+import 'package:payment_integration_sample/core/utils/helpers.dart';
 
 class StripePaymentIntentRequest {
   final double amount;

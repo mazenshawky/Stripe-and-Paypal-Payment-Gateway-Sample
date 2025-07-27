@@ -1,6 +1,6 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/custom_check_icon.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/custom_dashed_line.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/thank_you_card.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/custom_check_icon.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/custom_dashed_line.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/thank_you_card.dart';
 import 'package:flutter/material.dart';
 
 class ThankYouViewBody extends StatelessWidget {

@@ -1,10 +1,10 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/api_keys.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/api_service.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/helpers.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_intent_request.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_key_request/billing_data.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_key_request/paymob_payment_key_request.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_key_response/paymob_payment_key_response.dart';
+import 'package:payment_integration_sample/core/utils/api_keys.dart';
+import 'package:payment_integration_sample/core/utils/api_service.dart';
+import 'package:payment_integration_sample/core/utils/helpers.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paymob/paymob_payment_intent_request.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paymob/paymob_payment_key_request/billing_data.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paymob/paymob_payment_key_request/paymob_payment_key_request.dart';
+import 'package:payment_integration_sample/features/checkout/data/models/paymob/paymob_payment_key_response/paymob_payment_key_response.dart';
 
 class PaymobService {
   final ApiService apiService = ApiService();

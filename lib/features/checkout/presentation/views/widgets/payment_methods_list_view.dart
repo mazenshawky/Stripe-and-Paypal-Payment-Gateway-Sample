@@ -1,4 +1,4 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/payment_method_item.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/payment_method_item.dart';
 import 'package:flutter/material.dart';
 
 class PaymentMethodsListView extends StatefulWidget {

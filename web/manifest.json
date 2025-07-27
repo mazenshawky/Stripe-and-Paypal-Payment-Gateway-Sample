@@ -1,6 +1,6 @@
 {
-    "name": "stripe_and_paypal_payment_gateway_sample",
-    "short_name": "stripe_and_paypal_payment_gateway_sample",
+    "name": "payment_integration_sample",
+    "short_name": "payment_integration_sample",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

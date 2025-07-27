@@ -5,7 +5,7 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = stripe_and_paypal_payment_gateway_sample
+PRODUCT_NAME = payment_integration_sample
 
 // The application's bundle identifier
 PRODUCT_BUNDLE_IDENTIFIER = com.example.stripeAndPaypalPaymentGatewaySample

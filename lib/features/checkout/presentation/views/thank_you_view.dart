@@ -1,5 +1,5 @@
-import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/thank_you_view_body.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/cutom_app_bar.dart';
+import 'package:payment_integration_sample/Features/checkout/presentation/views/widgets/thank_you_view_body.dart';
+import 'package:payment_integration_sample/core/widgets/cutom_app_bar.dart';
 import 'package:flutter/material.dart';
 
 class ThankYouView extends StatelessWidget {

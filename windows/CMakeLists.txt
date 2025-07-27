@@ -1,10 +1,10 @@
 # Project-level configuration.
 cmake_minimum_required(VERSION 3.14)
-project(stripe_and_paypal_payment_gateway_sample LANGUAGES CXX)
+project(payment_integration_sample LANGUAGES CXX)
 
 # The name of the executable created for the application. Change this to change
 # the on-disk name of your application.
-set(BINARY_NAME "stripe_and_paypal_payment_gateway_sample")
+set(BINARY_NAME "payment_integration_sample")
 
 # Explicitly opt in to modern CMake behaviors to avoid warnings with recent
 # versions of CMake.
