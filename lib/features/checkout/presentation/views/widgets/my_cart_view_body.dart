@@ -2,8 +2,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/Features/checkout/presentation/views/widgets/total_price_widget.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/repos/checkout_repo.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/repos/checkout_repo_impl.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/cubit/payment_cubit.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/cart_info_item.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/payment_methods_bottom_sheet.dart';
 
@@ -39,8 +41,18 @@ class MyCartViewBody extends StatelessWidget {
                   ),
                 ),
                 builder: (context) {
-                  return BlocProvider(
-                    create: (context) => PaymentCubit(CheckoutRepoImpl()),
+                  final CheckoutRepo checkoutRepoImpl = CheckoutRepoImpl();
+                  return MultiBlocProvider(
+                    providers: [
+                      BlocProvider(
+                        create: (context) =>
+                            StripePaymentCubit(checkoutRepoImpl),
+                      ),
+                      BlocProvider(
+                        create: (context) =>
+                            PaymobPaymentCubit(checkoutRepoImpl),
+                      ),
+                    ],
                     child: const PaymentMethodsBottomSheet(),
                   );
                 },

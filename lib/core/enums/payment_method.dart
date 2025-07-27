@@ -1,1 +1,1 @@
-enum PaymentMethod { stripe, paypal }
+enum PaymentMethod { stripe, paypal, paymob }

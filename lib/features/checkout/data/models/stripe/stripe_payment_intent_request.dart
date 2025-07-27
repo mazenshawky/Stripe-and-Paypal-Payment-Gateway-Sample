@@ -1,9 +1,11 @@
-class PaymentIntentRequest {
+import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/helpers.dart';
+
+class StripePaymentIntentRequest {
   final double amount;
   final String currency;
   final String customerId;
 
-  PaymentIntentRequest({
+  StripePaymentIntentRequest({
     required this.amount,
     required this.currency,
     required this.customerId,
@@ -11,11 +13,9 @@ class PaymentIntentRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'amount': convertToMinorUnits(amount),
+      'amount': Helpers.convertToMinorUnits(amount),
       'currency': currency,
       'customer': customerId,
     };
   }
 }
-
-int convertToMinorUnits(double amount) => (amount * 100).round();

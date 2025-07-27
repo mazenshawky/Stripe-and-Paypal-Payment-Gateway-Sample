@@ -6,10 +6,13 @@ import 'package:stripe_and_paypal_payment_gateway_sample/core/functions/get_tran
 import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/api_keys.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/utils/user.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/core/widgets/custom_button.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/amount_model/amount_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/item_list_model/item_list_model.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/payment_intent_request.dart';
-import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/cubit/payment_cubit.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/amount_model/amount_model.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paypal/item_list_model/item_list_model.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/stripe/stripe_payment_intent_request.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/data/models/paymob/paymob_payment_intent_request.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/paymob_payment_cubit/paymob_payment_cubit.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/controllers/stripe_payment_cubit/stripe_payment_cubit.dart';
+import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/paymob_view.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/thank_you_view.dart';
 import 'package:stripe_and_paypal_payment_gateway_sample/features/checkout/presentation/views/widgets/payment_methods_list_view.dart';
 
@@ -34,24 +37,57 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
           SizedBox(height: 16),
           PaymentMethodsListView(updatePaymentMethod: updatePaymentMethod),
           SizedBox(height: 32),
-          BlocConsumer<PaymentCubit, PaymentState>(
-            listener: (context, state) {
-              if (state is PaymentSuccess) {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return const ThankYouView();
-                    },
-                  ),
-                );
-              }
-              if (state is PaymentFailure) {
-                Navigator.of(context).pop();
-                SnackBar snackBar = SnackBar(content: Text(state.errorMessage));
-                ScaffoldMessenger.of(context).showSnackBar(snackBar);
-              }
-            },
-            builder: (context, state) {
+          MultiBlocListener(
+            listeners: [
+              BlocListener<StripePaymentCubit, StripePaymentState>(
+                listener: (context, state) {
+                  if (state is StripePaymentSuccess) {
+                    Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return const ThankYouView();
+                        },
+                      ),
+                    );
+                  }
+                  if (state is StripePaymentFailure) {
+                    Navigator.of(context).pop();
+                    SnackBar snackBar = SnackBar(
+                      content: Text(state.errorMessage),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
+              ),
+              BlocListener<PaymobPaymentCubit, PaymobPaymentState>(
+                listener: (context, state) {
+                  if (state is PaymobPaymentSuccess) {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return PaymobPaymentView(paymentKey: state.key);
+                        },
+                      ),
+                    );
+                  }
+                  if (state is PaymobPaymentFailure) {
+                    Navigator.of(context).pop();
+                    SnackBar snackBar = SnackBar(
+                      content: Text(state.errorMessage),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }
+                },
+              ),
+            ],
+            child: SizedBox.shrink(),
+          ),
+          BlocBuilder<StripePaymentCubit, StripePaymentState>(
+            builder: (context, stripeState) {
+              final paymobState = context.watch<PaymobPaymentCubit>().state;
+              final isLoading =
+                  stripeState is StripePaymentLoading ||
+                  paymobState is PaymobPaymentLoading;
               return CustomButton(
                 onTap: () {
                   if (paymentMethod == PaymentMethod.stripe) {
@@ -60,10 +96,12 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
                     final ({AmountModel amount, ItemListModel itemList})
                     transactions = getTransactionsData();
                     executePaypalPayment(context, transactions);
+                  } else if (paymentMethod == PaymentMethod.paymob) {
+                    executePaymobPayment();
                   }
                 },
                 text: 'Continue',
-                isLoading: state is PaymentLoading ? true : false,
+                isLoading: isLoading,
               );
             },
           ),
@@ -77,19 +115,21 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
       paymentMethod = PaymentMethod.stripe;
     } else if (index == 1) {
       paymentMethod = PaymentMethod.paypal;
+    } else if (index == 2) {
+      paymentMethod = PaymentMethod.paymob;
     }
     setState(() {});
   }
 
   void executeStripePayment() {
-    PaymentIntentRequest paymentIntentRequest = PaymentIntentRequest(
+    StripePaymentIntentRequest stripePaymentIntentRequest = StripePaymentIntentRequest(
       amount: 67.54,
       currency: 'USD',
       customerId: User.stripeCustomerId,
     );
-    BlocProvider.of<PaymentCubit>(
+    BlocProvider.of<StripePaymentCubit>(
       context,
-    ).makePayment(paymentIntentRequest: paymentIntentRequest);
+    ).makePayment(stripePaymentIntentRequest: stripePaymentIntentRequest);
   }
 
   void executePaypalPayment(
@@ -135,6 +175,18 @@ class _PaymentMethodsBottomSheetState extends State<PaymentMethodsBottomSheet> {
           },
         ),
       ),
+    );
+  }
+
+  void executePaymobPayment() {
+    PaymobPaymentIntentRequest paymobPaymentIntentRequest =
+        PaymobPaymentIntentRequest(
+          amount: 467.34,
+          currency: 'EGP',
+          paymentMethodId: 5194151,
+        );
+    BlocProvider.of<PaymobPaymentCubit>(context).getPaymobPaymentKey(
+      paymobPaymentIntentRequest: paymobPaymentIntentRequest,
     );
   }
 }

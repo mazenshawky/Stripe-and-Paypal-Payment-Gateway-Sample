@@ -8,9 +8,10 @@ class ApiService {
     required String url,
     required String token,
     String? contentType,
+    String tokenType = 'Bearer',
     Map<String, dynamic>? additionalHeaders,
   }) async {
-    Map<String, dynamic> headers = {'Authorization': 'Bearer $token'};
+    Map<String, dynamic> headers = {'Authorization': '$tokenType $token'};
     if (additionalHeaders != null) {
       headers.addAll(additionalHeaders);
     }
